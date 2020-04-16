@@ -1,0 +1,13 @@
+<script>
+	import Nav from '../components/Nav.svelte';
+
+	export let segment;
+</script>
+
+<Nav {segment}/>
+
+<main>
+	<div class="page mid">
+		<slot></slot>
+	</div>
+</main>
