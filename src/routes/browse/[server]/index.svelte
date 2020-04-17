@@ -5,17 +5,17 @@
 </script>
 
 <script>
-  import * as storage from '../../lib/storage';
+  import * as storage from '../../../lib/storage';
   import { goto } from '@sapper/app';
   import { onMount } from 'svelte';
 
-  import Loading from '../../components/Loading.svelte';
-  import ZeroDataState from '../../components/ZeroDataState.svelte';
-  import DatabaseList from '../../components/databases/List.svelte';
+  import Loading from '../../../components/Loading.svelte';
+  import ZeroDataState from '../../../components/ZeroDataState.svelte';
+  import DatabaseList from '../../../components/databases/List.svelte';
 
-  export let id;
+  export let server;
 
-  let server = null;
+  let target = null;
   let error = null;
   let databases = null;
 
@@ -25,17 +25,17 @@
       return goto('/');
     }
 
-    server = servers[id];
-    if (!server) {
+    target = servers[server];
+    if (!target) {
       return goto('/');
     }
 
     try {
-      const response = await fetch('/api/server/databases', {
+      const response = await fetch('/api/databases', {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Connection-String': server.connectionString
+          'Connection-String': target.connectionString
         },
         credentials: 'same-origin'
       }).then(res => res.json());
@@ -56,8 +56,8 @@
 </script>
 
 <svelte:head>
-  {#if server}
-    <title>{server.name}</title>
+  {#if target}
+    <title>{target.name}</title>
   {:else}
     <title>Loading...</title>
   {/if}
@@ -71,12 +71,12 @@
   </section>
 {/if}
 
-{#if server && databases}
-  <h1>{server.name}</h1>
+{#if target && databases}
+  <h1>{target.name}</h1>
 
   <section class="content">
     {#if databases && databases.length}
-      <DatabaseList {databases} server={id} />
+      <DatabaseList {databases} {server} />
     {:else}
       <ZeroDataState>
         This server has no databases.

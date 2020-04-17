@@ -5,7 +5,7 @@
 
 <div class="generic-list">
   <div class="name">
-    <a href={`/server/${id}`}>
+    <a href={`/browse/${id}`}>
       {server.name}
     </a>
   </div>

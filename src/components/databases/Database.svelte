@@ -4,12 +4,12 @@
   export let database;
   export let server;
 
-  const size = filesize(database.sizeOnDisk);
+  const size = filesize(database.size);
 </script>
 
 <div class="generic-list">
   <div class="name">
-    <a href={`/server/${server}/db/${database.name}`}>
+    <a href={`/browse/${server}/${database.name}`}>
       {database.name}
     </a>
     <small class="additional-info">
