@@ -40,5 +40,20 @@
 				You have no servers yet.
 			</ZeroDataState>
 		{/if}
+
+		<section class="general-actions">
+			<a class="button" href="/import">Import</a>
+			{#if serversList && serversList.length}
+				<a class="button" href="/export">Export</a>
+				<a class="button red-button" href="/purge">Purge all data</a>
+			{/if}
+		</section>
 	{/if}
 </section>
+
+<style>
+	.general-actions {
+		text-align: center;
+		padding: 3em 1em;
+	}
+</style>

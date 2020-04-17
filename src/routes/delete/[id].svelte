@@ -40,6 +40,14 @@
   }
 </script>
 
+<svelte:head>
+  {#if target}
+    <title>Delete "{target.name}"</title>
+  {:else}
+    <title>Delete Server</title>
+  {/if}
+</svelte:head>
+
 {#if target}
   <h1>Delete "{target.name}"</h1>
 

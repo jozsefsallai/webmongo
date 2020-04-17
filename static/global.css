@@ -66,7 +66,7 @@ label {
   margin-bottom: .4rem;
 }
 
-input, button {
+input, button, .button {
   font: 16px / 1.6 'Montserrat', sans-serif;
   outline: none;
   padding: .6rem 1.5rem;
@@ -87,7 +87,8 @@ input:focus {
   border: 1px solid var(--mongo-green);
 }
 
-button {
+button, .button {
+  display: inline-block;
   border: 0;
   background: var(--mongo-green);
   color: #fff;
@@ -95,15 +96,15 @@ button {
   cursor: pointer;
 }
 
-button:hover, .title-with-button a:hover {
+button:hover, .button:hover, .title-with-button a:hover {
   background: rgba(var(--mongo-green-rgb), .8);
 }
 
-button.red-button {
+.red-button {
   background: var(--error);
 }
 
-button.red-button:hover {
+.red-button:hover {
   background: rgba(var(--error-rgb), .8);
 }
 
