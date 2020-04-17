@@ -75,7 +75,7 @@
       <input type="password" id="passphrase" name="passphrase">
     </div>
     <div class="input-group submit-button">
-      <button type="submit">Export</button>
+      <button type="submit">Import</button>
     </div>
   </form>
 </section>
