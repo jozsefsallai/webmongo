@@ -115,3 +115,25 @@ button:hover, .button:hover, .title-with-button a:hover {
   border-radius: 4px;
   margin-bottom: 2rem;
 }
+
+.generic-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .8em 1em;
+  background: #121212;
+  border-bottom: 3px solid #333;
+}
+
+.generic-list:first-child {
+  border-top: 3px solid #333;
+}
+
+.generic-list:nth-child(2n) {
+  background: #1a1a1a;
+}
+
+.generic-list .additional-info {
+  color: #656565;
+  display: block;
+}
