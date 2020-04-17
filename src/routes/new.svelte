@@ -49,7 +49,7 @@
 
 <h1>Add New Server</h1>
 
-<div class="content">
+<section class="content">
   {#if error && error.length}
     <div class="error-container">
       {error}
@@ -69,4 +69,4 @@
       <button type="submit">Add</button>
     </div>
   </form>
-</div>
+</section>
