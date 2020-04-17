@@ -10,7 +10,8 @@ class Mongo {
     try {
       this.client = await mongodb.MongoClient.connect(this.connectionString, {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        connectTimeoutMS: 10000,
+        reconnectTries: 1
       });
     } catch (err) {
       throw new Error(err);
