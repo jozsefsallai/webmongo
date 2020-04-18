@@ -17,7 +17,6 @@
   export let database;
 
   let targetServer = null;
-  let targetDatabase = null;
   let error = null;
   let collections = null;
 
@@ -58,7 +57,7 @@
 </script>
 
 <svelte:head>
-  {#if targetServer && targetDatabase}
+  {#if targetServer && database}
     <title>{database} - {targetServer.name}</title>
   {:else}
     <title>Loading...</title>
@@ -74,7 +73,7 @@
 {/if}
 
 {#if targetServer && collections}
-  <h1>{database} - {targetServer.name}</h1>
+  <h1>{database} ({targetServer.name})</h1>
 
   <section class="content">
     {#if collections.length}
