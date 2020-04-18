@@ -1,7 +1,7 @@
 <script>
   import cuid from 'cuid';
   import { goto } from '@sapper/app';
-  import * as storage from '../lib/storage';
+  import * as storage from '@/lib/storage';
 
   let error = null;
 

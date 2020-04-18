@@ -5,11 +5,11 @@
 </script>
 
 <script>
-  import * as storage from '../../lib/storage';
+  import * as storage from '@/lib/storage';
   import { goto } from '@sapper/app';
   import { onMount } from 'svelte';
 
-  import Loading from '../../components/Loading.svelte';
+  import Loading from '@/components/Loading.svelte';
 
   export let id;
 

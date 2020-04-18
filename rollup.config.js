@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import svelte from 'rollup-plugin-svelte';
 import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
+import alias from '@rollup/plugin-alias';
 import config from 'sapper/config/rollup.js';
 import pkg from './package.json';
 
@@ -13,11 +14,18 @@ const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
 const onwarn = (warning, onwarn) => (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) || onwarn(warning);
 
+const resolveSrc = alias({
+	entries: {
+		'@': __dirname + '/src'
+	}
+});
+
 export default {
 	client: {
 		input: config.client.input(),
 		output: config.client.output(),
 		plugins: [
+			resolveSrc,
 			replace({
 				'process.browser': true,
 				'process.env.NODE_ENV': JSON.stringify(mode)
@@ -62,6 +70,7 @@ export default {
 		input: config.server.input(),
 		output: config.server.output(),
 		plugins: [
+			resolveSrc,
 			replace({
 				'process.browser': false,
 				'process.env.NODE_ENV': JSON.stringify(mode)
@@ -86,6 +95,7 @@ export default {
 		input: config.serviceworker.input(),
 		output: config.serviceworker.output(),
 		plugins: [
+			resolveSrc,
 			resolve(),
 			replace({
 				'process.browser': true,

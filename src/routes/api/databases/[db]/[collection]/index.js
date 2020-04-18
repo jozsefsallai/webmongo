@@ -1,4 +1,4 @@
-import Mongo from '../../../../../lib/mongo';
+import Mongo from '@/lib/mongo';
 
 export async function get(req, res) {
   const connectionString = req.get('Connection-String');

@@ -1,10 +1,10 @@
 <script>
-	import Loading from '../components/Loading.svelte';
-	import ZeroDataState from '../components/ZeroDataState.svelte';
-	import ServerList from '../components/serverlist/List.svelte';
+	import Loading from '@/components/Loading.svelte';
+	import ZeroDataState from '@/components/ZeroDataState.svelte';
+	import ServerList from '@/components/serverlist/List.svelte';
 
 	import { onMount } from 'svelte';
-	import * as storage from '../lib/storage';
+	import * as storage from '@/lib/storage';
 
 	let loading = true;
 	let servers = null;

@@ -5,13 +5,13 @@
 </script>
 
 <script>
-  import * as storage from '../../../lib/storage';
+  import * as storage from '@/lib/storage';
   import { goto } from '@sapper/app';
   import { onMount } from 'svelte';
 
-  import Loading from '../../../components/Loading.svelte';
-  import ZeroDataState from '../../../components/ZeroDataState.svelte';
-  import DatabaseList from '../../../components/databases/List.svelte';
+  import Loading from '@/components/Loading.svelte';
+  import ZeroDataState from '@/components/ZeroDataState.svelte';
+  import DatabaseList from '@/components/databases/List.svelte';
 
   export let server;
 

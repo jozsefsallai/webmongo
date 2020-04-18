@@ -1,5 +1,5 @@
 <script>
-  import { get } from '../lib/storage';
+  import { get } from '@/lib/storage';
   import { onMount } from 'svelte';
   import { goto } from '@sapper/app';
   import FileSaver from 'file-saver';

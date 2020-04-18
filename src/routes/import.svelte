@@ -1,5 +1,5 @@
 <script>
-  import { set } from '../lib/storage';
+  import { set } from '@/lib/storage';
   import { goto } from '@sapper/app';
 
   import AES from 'crypto-js/aes';
