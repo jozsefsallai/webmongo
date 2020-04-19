@@ -65,31 +65,40 @@
   </div>
 {/if}
 
-<div class="generic-list document-list">
-  <div class="name">{doc._id}</div>
-  <div class="actions">
-    <button on:click={toggleEditMode}>Edit</button>
-    <button class="red-button" on:click={deleteDocument}>Delete</button>
+<div class="document">
+  <div class="generic-list">
+    <div class="name">{doc._id}</div>
+    <div class="actions">
+      <button on:click={toggleEditMode}>Edit</button>
+      <button class="red-button" on:click={deleteDocument}>Delete</button>
+    </div>
   </div>
+
+  {#if editMode}
+    <svelte:component
+      this={EditDocumentContainer}
+      {connectionString}
+      {database}
+      {collection}
+      id={doc._id}
+      original={doc}
+      on:cancelled={toggleEditMode}
+      on:success={handleEditSuccess}
+    />
+  {:else}
+    <ObjectData content={doc} />
+  {/if}
 </div>
 
-{#if editMode}
-  <svelte:component
-    this={EditDocumentContainer}
-    {connectionString}
-    {database}
-    {collection}
-    id={doc._id}
-    original={doc}
-    on:cancelled={toggleEditMode}
-    on:success={handleEditSuccess}
-  />
-{:else}
-  <ObjectData content={doc} />
-{/if}
-
 <style>
-  .document-list {
+  .document .generic-list {
     border-top: 3px solid #333;
+  }
+
+  @media only screen and ( max-width: 720px ) {
+    .document .generic-list {
+      display: block;
+      text-align: center;
+    }
   }
 </style>

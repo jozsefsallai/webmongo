@@ -48,15 +48,6 @@ h1, h2, h3, h4 {
   justify-content: space-between;
 }
 
-.title-with-button a {
-  display: inline-block;
-  background: var(--mongo-green);
-  color: #fff;
-  padding: .4rem 1.2rem;
-  border-radius: 3px;
-  transition: background 100ms linear;
-}
-
 .input-group {
   margin-bottom: 2rem;
 }
@@ -208,5 +199,9 @@ button.loading::before {
 
   header .mid {
     margin-top: 0;
+  }
+
+  h1 {
+    font-size: 1.3em;
   }
 }

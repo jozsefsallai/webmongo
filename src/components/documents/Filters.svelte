@@ -30,11 +30,6 @@
     const url = `/browse/${server}/${database}/${collection}?${queryParams.toString()}`;
     return dispatch('update', { url, params });
   }
-
-  function handleCancelClick(e) {
-    e.preventDefault();
-    return dispatch('cancel');
-  }
 </script>
 
 <section class="filters">
@@ -66,7 +61,6 @@
 
     <div class="input-group submit-button">
       <button type="submit">Apply Filters</button>
-      <button on:click={handleCancelClick}>Cancel</button>
     </div>
   </form>
 </section>

@@ -158,7 +158,7 @@
 
 {#if targetServer && documents}
   <div class="title-with-button">
-    <h1>{database} / {collection} ({targetServer.name})</h1>
+    <h1>{collection}</h1>
     <div>
       <button on:click={toggleFilterContainer}>Filters</button>
       <button on:click={toggleCreateDocumentContainer}>New</button>
@@ -181,7 +181,6 @@
       {q} {sort} {project} {limit} {skip}
       {server} {database} {collection}
       on:update={handleFilterUpdate}
-      on:cancel={toggleFilterContainer}
     />
   {/if}
 

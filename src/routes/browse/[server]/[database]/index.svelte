@@ -64,7 +64,7 @@
 
 <svelte:head>
   {#if targetServer && database}
-    <title>{database} - {targetServer.name}</title>
+    <title>{database} ({targetServer.name})</title>
   {:else}
     <title>Loading...</title>
   {/if}
@@ -79,7 +79,7 @@
 {/if}
 
 {#if targetServer && collections}
-  <h1>{database} ({targetServer.name})</h1>
+  <h1>{database}</h1>
 
   <section class="content">
     {#if collections.length}

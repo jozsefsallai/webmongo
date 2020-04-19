@@ -10,6 +10,6 @@
     </a>
   </div>
   <div class="actions">
-    <a href={`/delete/${id}`}>Delete</a>
+    <a class="button red-button" href={`/delete/${id}`}>Delete</a>
   </div>
 </div>

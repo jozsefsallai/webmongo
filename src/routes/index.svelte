@@ -29,7 +29,7 @@
 
 <div class="title-with-button">
 	<h1>Servers</h1>
-	<a href="/new">New</a>
+	<a href="/new" class="button">New</a>
 </div>
 
 <section class="content">
