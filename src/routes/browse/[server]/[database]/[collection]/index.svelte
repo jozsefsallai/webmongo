@@ -108,8 +108,8 @@
   }
 
   async function handleCreateSuccess() {
-    toggleCreateDocumentContainer();
     await fetchDocuments();
+    setTimeout(toggleCreateDocumentContainer, 5000);
   }
 
   async function handleFilterUpdate(e) {

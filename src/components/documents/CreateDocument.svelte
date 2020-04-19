@@ -53,10 +53,7 @@
         return;
       } else {
         successVisible = true;
-
-        setTimeout(function () {
-          dispatch('success');
-        }, 5000);
+        dispatch('success');
       }
     } catch (err) {
       error = err.message;
