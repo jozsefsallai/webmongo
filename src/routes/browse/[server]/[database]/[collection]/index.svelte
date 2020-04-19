@@ -107,7 +107,12 @@
 
   <div class="content">
     {#if documents.length}
-      <DocumentsList {documents} {collection} {database} {server} />
+      <DocumentsList
+        {documents}
+        {collection}
+        {database}
+        connectionString={targetServer.connectionString}
+      />
     {:else}
       <ZeroDataState>
         This collection has no entries.

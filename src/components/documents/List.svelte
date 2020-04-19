@@ -4,13 +4,13 @@
   export let documents;
   export let collection;
   export let database;
-  export let server;
+  export let connectionString;
 </script>
 
 <div class="document-list">
   {#each documents as doc}
     <Document
-      {server}
+      {connectionString}
       {database}
       {collection}
       {doc}

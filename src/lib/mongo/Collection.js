@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb';
+
 class Collection {
   constructor(collection) {
     this.collection = collection;
@@ -43,6 +45,19 @@ class Collection {
 
       this.collection.insertOne(payload);
       return payload;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  async delete(id) {
+    try {
+      const document = await this.collection.findOne(ObjectId(id));
+      if (!document) {
+        throw new Error('Document not found.');
+      }
+
+      await this.collection.deleteOne({ _id: document._id });
     } catch (err) {
       throw new Error(err);
     }

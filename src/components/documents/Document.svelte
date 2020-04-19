@@ -2,16 +2,55 @@
   import ObjectData from './ObjectData.svelte';
 
   export let doc;
-  // export let collection;
-  // export let database;
-  // export let server;
+  export let collection;
+  export let database;
+  export let connectionString;
+
+  let error = null;
+
+  async function deleteDocument() {
+    if (confirm('Are you sure you want to delete this document? This action is irreversible!')) {
+      error = null;
+
+      try {
+        const response = await fetch(`/api/databases/${database}/${collection}/${doc._id}`, {
+          method: 'DELETE',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Connection-String': connectionString
+          },
+          credentials: 'same-origin'
+        }).then(res => res.json());
+
+        if (response.ok) {
+          console.log('document delete success');
+          return;
+        } else {
+          error = response.error && response.error.length
+            ? response.error
+            : 'Something bad happened.';
+          return;
+        }
+      } catch (err) {
+        error = err.message;
+        return;
+      }
+    }
+  }
 </script>
+
+{#if error && error.length}
+  <div class="error-container">
+    {error}
+  </div>
+{/if}
 
 <div class="generic-list document-list">
   <div class="name">{doc._id}</div>
   <div class="actions">
-    <a href="javascript:;">Edit</a>
-    <a href="javascript:;">Delete</a>
+    <button>Edit</button>
+    <button class="red-button" on:click={deleteDocument}>Delete</button>
   </div>
 </div>
 
