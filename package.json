@@ -12,6 +12,7 @@
     "start": "node __sapper__/build"
   },
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.13.0",
     "@rollup/plugin-alias": "^3.1.0",
     "body-parser": "^1.19.0",
     "codemirror": "^5.52.2",
