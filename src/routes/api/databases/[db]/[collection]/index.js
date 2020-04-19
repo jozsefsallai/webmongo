@@ -35,7 +35,14 @@ export async function get(req, res) {
       documents
     });
   } catch (err) {
-    return res.status(400).json({
+    if (err instanceof SyntaxError) {
+      return res.status(400).json({
+        ok: false,
+        error: 'Invalid JSON in fetch request.'
+      });
+    }
+
+    return res.status(500).json({
       ok: false,
       error: err.message
     });

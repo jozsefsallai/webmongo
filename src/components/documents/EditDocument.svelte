@@ -53,7 +53,7 @@
           : 'Something bad happened.';
         return;
       } else {
-        dispatch('success');
+        dispatch('success', { document: response.document });
       }
     } catch (err) {
       error = err.message;

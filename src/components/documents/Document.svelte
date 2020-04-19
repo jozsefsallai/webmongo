@@ -21,8 +21,8 @@
     editMode = !editMode;
   }
 
-  function handleEditSuccess() {
-    console.log('document edit success');
+  function handleEditSuccess(e) {
+    doc = e.detail.document;
     toggleEditMode();
   }
 

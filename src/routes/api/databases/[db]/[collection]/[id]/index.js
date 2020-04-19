@@ -26,7 +26,10 @@ export async function put(req, res) {
 
     return res.json({
       ok: true,
-      document
+      document: {
+        _id: id,
+        ...document
+      }
     });
   } catch (err) {
     return res.status(500).json({
