@@ -68,6 +68,16 @@ class Mongo {
 
     return collection.find(opts);
   }
+
+  async insertDocument(databaseName, collectionName, payload) {
+    this.checkClient();
+
+    const server = new Server(this.client);
+    const database = await server.database(databaseName);
+    const collection = await database.collection(collectionName);
+
+    return collection.insert(payload);
+  }
 }
 
 export default Mongo;

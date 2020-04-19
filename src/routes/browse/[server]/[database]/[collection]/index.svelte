@@ -21,6 +21,9 @@
   let error = null;
   let documents = null;
 
+  let CreateDocumentContainer;
+  let createDocumentContainerVisible = false;
+
   onMount(async function () {
     const servers = storage.get('servers');
     if (!servers) {
@@ -54,7 +57,19 @@
       error = err.message;
       return;
     }
+
+    const createDocumentContainerModule = await import('@/components/documents/CreateDocument.svelte');
+    CreateDocumentContainer = createDocumentContainerModule.default;
   });
+
+  function toggleCreateDocumentContainer() {
+    createDocumentContainerVisible = !createDocumentContainerVisible;
+  }
+
+  function handleCreateSuccess() {
+    console.log('added to coll');
+    toggleCreateDocumentContainer();
+  }
 </script>
 
 <svelte:head>
@@ -74,7 +89,21 @@
 {/if}
 
 {#if targetServer && documents}
-  <h1>{database} / {collection} ({targetServer.name})</h1>
+  <div class="title-with-button">
+    <h1>{database} / {collection} ({targetServer.name})</h1>
+    <button on:click={toggleCreateDocumentContainer}>New</button>
+  </div>
+
+  {#if createDocumentContainerVisible}
+    <svelte:component
+      this={CreateDocumentContainer}
+      connectionString={targetServer.connectionString}
+      {database}
+      {collection}
+      on:cancelled={toggleCreateDocumentContainer}
+      on:success={handleCreateSuccess}
+    />
+  {/if}
 
   <div class="content">
     {#if documents.length}

@@ -29,6 +29,15 @@ class Collection {
       .skip(opts.skip)
       .toArray();
   }
+
+  insert(payload) {
+    try {
+      this.collection.insert(payload);
+      return payload;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
 }
 
 export default Collection;

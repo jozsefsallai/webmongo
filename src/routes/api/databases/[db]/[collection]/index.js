@@ -41,3 +41,39 @@ export async function get(req, res) {
     });
   }
 }
+
+export async function post(req, res) {
+  const connectionString = req.get('Connection-String');
+  if (!connectionString) {
+    return res.status(400).json({
+      ok: false,
+      error: 'The connection string is missing from your request.'
+    });
+  }
+
+  const { db, collection } = req.params;
+  const { payload } = req.body;
+
+  if (!payload) {
+    return res.status(400).json({
+      ok: false,
+      error: 'Invalid JSON.'
+    });
+  }
+
+  try {
+    const mongo = new Mongo(connectionString);
+    await mongo.connect();
+    const document = await mongo.insertDocument(db, collection, payload);
+
+    return res.json({
+      ok: true,
+      document
+    });
+  } catch (err) {
+    return res.status(400).json({
+      ok: false,
+      error: err.message
+    });
+  }
+}
