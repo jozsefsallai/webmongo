@@ -140,3 +140,20 @@ button:hover, .button:hover, .title-with-button a:hover {
   color: #656565;
   display: block;
 }
+
+@media only screen and ( max-width: 1120px ) {
+  .mid {
+    width: 720px;
+  }
+}
+
+@media only screen and ( max-width: 720px ) {
+  .mid {
+    width: auto;
+    margin: 1em;
+  }
+
+  header .mid {
+    margin-top: 0;
+  }
+}
