@@ -1,11 +1,13 @@
 <script>
   import ObjectData from './ObjectData.svelte';
-  import { onMount } from 'svelte';
+  import { onMount, createEventDispatcher } from 'svelte';
 
   export let doc;
   export let collection;
   export let database;
   export let connectionString;
+
+  const dispatch = createEventDispatcher();
 
   let error = null;
 
@@ -42,8 +44,7 @@
         }).then(res => res.json());
 
         if (response.ok) {
-          console.log('document delete success');
-          return;
+          return dispatch('deleted');
         } else {
           error = response.error && response.error.length
             ? response.error

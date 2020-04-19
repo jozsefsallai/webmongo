@@ -199,6 +199,7 @@
         {collection}
         {database}
         connectionString={targetServer.connectionString}
+        on:update={fetchDocuments}
       />
     {:else}
       <ZeroDataState>
