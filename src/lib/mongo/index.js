@@ -79,6 +79,16 @@ class Mongo {
     return collection.insert(payload);
   }
 
+  async updateDocument(databaseName, collectionName, id, payload) {
+    this.checkClient();
+
+    const server = new Server(this.client);
+    const database = await server.database(databaseName);
+    const collection = await database.collection(collectionName);
+
+    return collection.update(id, payload);
+  }
+
   async deleteDocument(databaseName, collectionName, id) {
     this.checkClient();
 

@@ -7,11 +7,12 @@
   export let connectionString;
   export let database;
   export let collection;
+  export let id;
+  export let original;
 
   const dispatch = createEventDispatcher();
 
   let error = null;
-  let successVisible = false;
 
   let editorElement;
   let editor;
@@ -35,8 +36,8 @@
     }
 
     try {
-      const response = await fetch(`/api/databases/${database}/${collection}`, {
-        method: 'POST',
+      const response = await fetch(`/api/databases/${database}/${collection}/${id}`, {
+        method: 'PUT',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -52,11 +53,7 @@
           : 'Something bad happened.';
         return;
       } else {
-        successVisible = true;
-
-        setTimeout(function () {
-          dispatch('success');
-        }, 5000);
+        dispatch('success');
       }
     } catch (err) {
       error = err.message;
@@ -70,39 +67,31 @@
   }
 </script>
 
-<section class="create-document-container">
+<form on:submit={handleFormSubmit}>
   {#if error && error.length}
     <div class="error-container">
       {error}
     </div>
   {/if}
 
-  {#if successVisible}
-    <div class="success-container">
-      Document created successfully.
-    </div>
-  {:else}
-    <form on:submit={handleFormSubmit}>
-      <div class="input-group">
-        <label for="payload">Contents:</label>
-        <textarea class="json-editor" bind:this={editorElement}>{'{\n\t\n}'}</textarea>
-      </div>
-      <div class="input-group submit-button">
-        <SubmitWithLoading callback={handleFormSubmit}>Add</SubmitWithLoading>
-        <button on:click={handleCancelClick}>Cancel</button>
-      </div>
-    </form>
-  {/if}
-</section>
+  <div class="input-group">
+    <label for="payload">Contents:</label>
+    <textarea
+      class="json-editor"
+      bind:this={editorElement}
+    >{JSON.stringify(original, null, 2)}</textarea>
+  </div>
+  <div class="input-group submit-button">
+    <SubmitWithLoading callback={handleFormSubmit}>Save</SubmitWithLoading>
+    <button on:click={handleCancelClick}>Cancel</button>
+  </div>
+</form>
 
 <style>
-  .create-document-container {
+  form {
+    margin: 0;
     padding: 2em;
     background: #121212;
-    margin-top: 2em;
-  }
-
-  .success-container {
-    margin-bottom: 0;
+    margin-bottom: 1.5em;
   }
 </style>

@@ -1,5 +1,6 @@
 <script>
   import ObjectData from './ObjectData.svelte';
+  import { onMount } from 'svelte';
 
   export let doc;
   export let collection;
@@ -7,6 +8,23 @@
   export let connectionString;
 
   let error = null;
+
+  let EditDocumentContainer;
+  let editMode = false;
+
+  onMount(async function () {
+    const editDocumentContainerModule = await import('@/components/documents/EditDocument.svelte');
+    EditDocumentContainer = editDocumentContainerModule.default;
+  });
+
+  function toggleEditMode() {
+    editMode = !editMode;
+  }
+
+  function handleEditSuccess() {
+    console.log('document edit success');
+    toggleEditMode();
+  }
 
   async function deleteDocument() {
     if (confirm('Are you sure you want to delete this document? This action is irreversible!')) {
@@ -49,12 +67,25 @@
 <div class="generic-list document-list">
   <div class="name">{doc._id}</div>
   <div class="actions">
-    <button>Edit</button>
+    <button on:click={toggleEditMode}>Edit</button>
     <button class="red-button" on:click={deleteDocument}>Delete</button>
   </div>
 </div>
 
-<ObjectData content={doc} />
+{#if editMode}
+  <svelte:component
+    this={EditDocumentContainer}
+    {connectionString}
+    {database}
+    {collection}
+    id={doc._id}
+    original={doc}
+    on:cancelled={toggleEditMode}
+    on:success={handleEditSuccess}
+  />
+{:else}
+  <ObjectData content={doc} />
+{/if}
 
 <style>
   .document-list {

@@ -39,11 +39,40 @@ class Collection {
           throw new Error('You must supply at least one document.');
         }
 
+        payload = payload.map(doc => {
+          delete doc._id; // do not set ID yourself
+          return doc;
+        });
+
         this.collection.insertMany(payload);
         return payload;
       }
 
+      delete payload._id; // do not set ID yourself
       this.collection.insertOne(payload);
+      return payload;
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  async update(id, payload) {
+    try {
+      if (Array.isArray(payload)) {
+        throw new Error('You may only provide one object.');
+      }
+
+      const document = await this.collection.findOne(ObjectId(id));
+      if (!document) {
+        throw new Error('Document not found.');
+      }
+
+      delete payload._id; // do not update ID
+
+      await this.collection.replaceOne({
+        _id: new ObjectId(id),
+      }, payload);
+
       return payload;
     } catch (err) {
       throw new Error(err);
