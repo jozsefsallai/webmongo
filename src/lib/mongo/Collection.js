@@ -23,13 +23,27 @@ class Collection {
     }
   }
 
-  find(opts) {
-    return this.collection.find(opts.query)
+  async count(query) {
+    if (!query || Object.keys(query).length === 0) {
+      return this.collection.estimatedDocumentCount();
+    }
+
+    return this.collection.countDocuments(query, {
+      maxTimeMS: 5000
+    }).catch(() => this.collection.estimatedDocumentCount());
+  }
+
+  async find(opts) {
+    const count = await this.count(opts.query);
+
+    const documents = await this.collection.find(opts.query)
       .project(opts.project)
       .sort(opts.sort)
       .limit(opts.limit)
       .skip(opts.skip)
       .toArray();
+
+    return { count, documents };
   }
 
   insert(payload) {

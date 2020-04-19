@@ -28,10 +28,11 @@ export async function get(req, res) {
 
     const mongo = new Mongo(connectionString);
     await mongo.connect();
-    const documents = await mongo.documents(db, collection, opts);
+    const { count, documents } = await mongo.documents(db, collection, opts);
 
     return res.json({
       ok: true,
+      count,
       documents
     });
   } catch (err) {

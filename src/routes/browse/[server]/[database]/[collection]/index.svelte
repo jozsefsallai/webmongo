@@ -8,10 +8,12 @@
   import * as storage from '@/lib/storage';
   import { goto } from '@sapper/app';
   import { onMount } from 'svelte';
+  import createParams from '@/lib/createParams';
 
   import Loading from '@/components/Loading.svelte';
   import ZeroDataState from '@/components/ZeroDataState.svelte';
   import Filters from '@/components/documents/Filters.svelte';
+  import Pagination from '@/components/documents/Pagination.svelte';
   import DocumentsList from '@/components/documents/List.svelte';
 
   // url params
@@ -20,15 +22,16 @@
   export let collection;
 
   // query params
-  export let q;
-  export let sort;
-  export let project;
-  export let limit;
-  export let skip;
+  export let q = '{}';
+  export let sort = '';
+  export let project = '{}';
+  export let limit = 20;
+  export let skip = 0;
 
   let targetServer = null;
   let error = null;
   let documents = null;
+  let total = 0;
 
   let CreateDocumentContainer;
   let createDocumentContainerVisible = false;
@@ -65,6 +68,7 @@
       }
 
       documents = response.documents;
+      total = response.count;
     } catch (err) {
       error = err.message;
       return;
@@ -116,6 +120,17 @@
     goto(e.detail.url); // doesn't actually update the preloaded state
     await fetchDocuments(); // so we have to refetch
   }
+
+  async function handlePaginationUpdate(e) {
+    error = null;
+    documents = null;
+
+    skip = e.detail.skip;
+
+    const params = createParams({ q, sort, project, limit, skip });
+    goto(`/browse/${server}/${database}/${collection}?${params.toString()}`);
+    await fetchDocuments();
+  }
 </script>
 
 <svelte:head>
@@ -160,6 +175,13 @@
       {server} {database} {collection}
       on:update={handleFilterUpdate}
       on:cancel={toggleFilterContainer}
+    />
+  {/if}
+
+  {#if documents.length && limit < total}
+    <Pagination
+      {skip} {limit} {total}
+      on:update={handlePaginationUpdate}
     />
   {/if}
 
