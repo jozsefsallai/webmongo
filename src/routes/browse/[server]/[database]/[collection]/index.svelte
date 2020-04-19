@@ -11,14 +11,15 @@
 
   import Loading from '@/components/Loading.svelte';
   import ZeroDataState from '@/components/ZeroDataState.svelte';
-  import CollectionsList from '@/components/collections/List.svelte';
+  import DocumentsList from '@/components/documents/List.svelte';
 
   export let server;
   export let database;
+  export let collection;
 
   let targetServer = null;
   let error = null;
-  let collections = null;
+  let documents = null;
 
   onMount(async function () {
     const servers = storage.get('servers');
@@ -32,7 +33,7 @@
     }
 
     try {
-      const response = await fetch(`/api/databases/${database}`, {
+      const response = await fetch(`/api/databases/${database}/${collection}`, {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -48,7 +49,7 @@
         return;
       }
 
-      collections = response.collections;
+      documents = response.documents;
     } catch (err) {
       error = err.message;
       return;
@@ -57,8 +58,8 @@
 </script>
 
 <svelte:head>
-  {#if targetServer && database}
-    <title>{database} - {targetServer.name}</title>
+  {#if targetServer}
+    <title>{database} / {collection} ({targetServer.name})</title>
   {:else}
     <title>Loading...</title>
   {/if}
@@ -72,18 +73,18 @@
   </section>
 {/if}
 
-{#if targetServer && collections}
-  <h1>{database} ({targetServer.name})</h1>
+{#if targetServer && documents}
+  <h1>{database} / {collection} ({targetServer.name})</h1>
 
-  <section class="content">
-    {#if collections.length}
-      <CollectionsList {collections} {database} {server} />
+  <div class="content">
+    {#if documents.length}
+      <DocumentsList {documents} {collection} {database} {server} />
     {:else}
       <ZeroDataState>
-        This database has no collections.
+        This collection has no entries.
       </ZeroDataState>
     {/if}
-  </section>
+  </div>
 {:else}
   {#if !error}
     <Loading />

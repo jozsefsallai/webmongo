@@ -13,10 +13,13 @@ body {
   --mongo-green-rgb: 19, 170, 82;
   --error: #d32f2f;
   --error-rgb: 211, 47, 47;
+
+  --md-break: 1120px;
+  --mobile-break: 720px;
 }
 
 .mid {
-  width: 1120px;
+  width: var(--md-break);
   margin: 0 auto;
 }
 
