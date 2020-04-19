@@ -32,7 +32,16 @@ class Collection {
 
   insert(payload) {
     try {
-      this.collection.insert(payload);
+      if (Array.isArray(payload)) {
+        if (!payload.length) {
+          throw new Error('You must supply at least one document.');
+        }
+
+        this.collection.insertMany(payload);
+        return payload;
+      }
+
+      this.collection.insertOne(payload);
       return payload;
     } catch (err) {
       throw new Error(err);

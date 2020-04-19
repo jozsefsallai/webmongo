@@ -35,7 +35,6 @@
     error = null;
 
     let payload = editor.getValue();
-    console.log(payload);
 
     try {
       payload = JSON.parse(payload);
