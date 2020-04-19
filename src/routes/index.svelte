@@ -5,12 +5,15 @@
 
 	import { onMount } from 'svelte';
 	import * as storage from '@/lib/storage';
+	import { breadcrumbs } from '@/state/store';
 
 	let loading = true;
 	let servers = null;
 	let serversList = [];
 
 	onMount(() => {
+		breadcrumbs.set([]);
+
 		servers = storage.get('servers');
 		if (servers) {
 			serversList = Object.keys(servers);

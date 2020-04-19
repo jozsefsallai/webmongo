@@ -8,6 +8,7 @@
   import * as storage from '@/lib/storage';
   import { goto } from '@sapper/app';
   import { onMount } from 'svelte';
+  import { breadcrumbs } from '@/state/store';
 
   import Loading from '@/components/Loading.svelte';
   import ZeroDataState from '@/components/ZeroDataState.svelte';
@@ -29,6 +30,8 @@
     if (!target) {
       return goto('/');
     }
+
+    breadcrumbs.set([{ label: target.name }]);
 
     try {
       const response = await fetch('/api/databases', {

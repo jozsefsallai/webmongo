@@ -101,6 +101,7 @@ button, .button {
   color: #fff;
   transition: background 100ms linear;
   cursor: pointer;
+  margin: 3px;
 }
 
 button:hover, .button:hover, .title-with-button a:hover {

@@ -9,6 +9,7 @@
   import { goto } from '@sapper/app';
   import { onMount } from 'svelte';
   import createParams from '@/lib/createParams';
+  import { breadcrumbs } from '@/state/store';
 
   import Loading from '@/components/Loading.svelte';
   import ZeroDataState from '@/components/ZeroDataState.svelte';
@@ -85,6 +86,12 @@
     if (!targetServer) {
       return goto('/');
     }
+
+    breadcrumbs.set([
+      { label: targetServer.name, url: `/browse/${server}` },
+      { label: database, url: `/browse/${server}/${database}` },
+      { label: collection }
+    ]);
 
     await fetchDocuments();
 
