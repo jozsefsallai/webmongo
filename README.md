@@ -13,7 +13,7 @@ It would be great if managing MongoDB servers was doable through a web interface
 web browser alone. But then comes the question: is it really a good idea to store all your connection
 strings on a remote server? What if someone maliciously gains access to the database and manages to decrypt
 your connection strings? Having a centralized user database also means they are prone to getting their
-accounts compromised, if they don't secure their account well enough.
+accounts compromised if they don't secure their account well enough.
 
 This is where WebMongo comes into play. WebMongo is a web application that allows you to have your own,
 decentralized database of MongoDB servers without having to deploy anything to your server at all. Instead

@@ -37,4 +37,16 @@
 		font-weight: 700;
 		font-size: 1.3rem;
 	}
+
+	@media only screen and ( max-width: 720px ) {
+		header .nav-flex-wrapper {
+			display: block;
+			text-align: center;
+			padding: 1em;
+		}
+
+		header .nav-flex-wrapper .header-left {
+			padding: 0;
+		}
+	}
 </style>
