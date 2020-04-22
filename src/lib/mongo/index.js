@@ -23,6 +23,10 @@ class Mongo {
     }
   }
 
+  async disconnect() {
+    await this.client.close();
+  }
+
   checkClient() {
     if (!this.client) {
       throw new Error(errors.CLIENT_NOT_INIT);

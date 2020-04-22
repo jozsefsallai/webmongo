@@ -29,6 +29,7 @@ export async function get(req, res) {
     const mongo = new Mongo(connectionString);
     await mongo.connect();
     const { count, documents } = await mongo.documents(db, collection, opts);
+    await mongo.disconnect();
 
     return res.json({
       ok: true,
@@ -73,6 +74,7 @@ export async function post(req, res) {
     const mongo = new Mongo(connectionString);
     await mongo.connect();
     const document = await mongo.insertDocument(db, collection, payload);
+    await mongo.disconnect();
 
     return res.json({
       ok: true,

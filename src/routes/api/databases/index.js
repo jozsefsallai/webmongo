@@ -13,6 +13,7 @@ export async function get(req, res) {
     const mongo = new Mongo(connectionString);
     await mongo.connect();
     const databases = await mongo.databasesJSON();
+    await mongo.disconnect();
 
     return res.json({
       ok: true,

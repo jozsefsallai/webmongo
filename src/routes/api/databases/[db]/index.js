@@ -15,6 +15,7 @@ export async function get(req, res) {
     const mongo = new Mongo(connectionString);
     await mongo.connect();
     const collections = await mongo.collectionsJSON(db);
+    await mongo.disconnect();
 
     return res.json({
       ok: true,

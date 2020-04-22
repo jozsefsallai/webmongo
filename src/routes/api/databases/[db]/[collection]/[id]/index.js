@@ -23,6 +23,7 @@ export async function put(req, res) {
     const mongo = new Mongo(connectionString);
     await mongo.connect();
     const document = await mongo.updateDocument(db, collection, id, payload);
+    await mongo.disconnect();
 
     return res.json({
       ok: true,
@@ -54,6 +55,7 @@ export async function del(req, res) {
     const mongo = new Mongo(connectionString);
     await mongo.connect();
     await mongo.deleteDocument(db, collection, id);
+    await mongo.disconnect();
 
     return res.json({
       ok: true
