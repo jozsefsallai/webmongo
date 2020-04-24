@@ -4,10 +4,16 @@
   export let collections;
   export let database;
   export let server;
+  export let connectionString;
 </script>
 
 <div class="collection-list">
   {#each collections as collection}
-    <Collection {server} {database} {collection} />
+    <Collection
+      {server}
+      {database}
+      {collection}
+      {connectionString}
+    />
   {/each}
 </div>

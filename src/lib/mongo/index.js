@@ -63,6 +63,16 @@ class Mongo {
     return Promise.all(collections.map(c => c.json()));
   }
 
+  async renameCollection(databaseName, oldCollectionName, newCollectionName) {
+    this.checkClient();
+
+    const server = new Server(this.client);
+    const database = await server.database(databaseName);
+
+    const collection = await database.collection(oldCollectionName);
+    return collection.rename(newCollectionName);
+  }
+
   async documents(databaseName, collectionName, opts) {
     this.checkClient();
 

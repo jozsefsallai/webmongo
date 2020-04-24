@@ -46,6 +46,16 @@ class Collection {
     return { count, documents };
   }
 
+  async rename(newName) {
+    try {
+      const updatedCollection = await this.collection.rename(newName);
+      this.collection = updatedCollection;
+      return await this.json();
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
   insert(payload) {
     try {
       if (Array.isArray(payload)) {

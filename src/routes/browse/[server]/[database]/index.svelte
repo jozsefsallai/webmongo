@@ -13,6 +13,7 @@
   import Loading from '@/components/Loading.svelte';
   import ZeroDataState from '@/components/ZeroDataState.svelte';
   import CollectionsList from '@/components/collections/List.svelte';
+  import CreateCollectionContainer from '@/components/collections/CreateCollection.svelte';
 
   export let server;
   export let database;
@@ -20,6 +21,7 @@
   let targetServer = null;
   let error = null;
   let collections = null;
+  let createCollectionContainerVisible = false;
 
   onMount(async function () {
     const servers = storage.get('servers');
@@ -60,6 +62,10 @@
       return;
     }
   });
+
+  function toggleCreateCollectionContainer() {
+    createCollectionContainerVisible = !createCollectionContainerVisible;
+  }
 </script>
 
 <svelte:head>
@@ -70,28 +76,41 @@
   {/if}
 </svelte:head>
 
-{#if error && error.length}
-  <section class="content">
+<div class="title-with-button">
+  <h1>{database}</h1>
+  <button on:click={toggleCreateCollectionContainer}>New</button>
+</div>
+
+<section class="content">
+  {#if createCollectionContainerVisible}
+    <CreateCollectionContainer
+      {server}
+      {database}
+    />
+  {/if}
+
+  {#if error && error.length}
     <div class="error-container">
       {error}
     </div>
-  </section>
-{/if}
+  {/if}
 
-{#if targetServer && collections}
-  <h1>{database}</h1>
-
-  <section class="content">
+  {#if targetServer && collections}
     {#if collections.length}
-      <CollectionsList {collections} {database} {server} />
+      <CollectionsList
+        {collections}
+        {database}
+        {server}
+        connectionString={targetServer.connectionString}
+      />
     {:else}
       <ZeroDataState>
         This database has no collections.
       </ZeroDataState>
     {/if}
-  </section>
-{:else}
-  {#if !error}
-    <Loading />
+  {:else}
+    {#if !error}
+      <Loading />
+    {/if}
   {/if}
-{/if}
+</section>

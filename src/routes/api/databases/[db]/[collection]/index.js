@@ -87,3 +87,40 @@ export async function post(req, res) {
     });
   }
 }
+
+export async function patch(req, res) {
+  const connectionString = req.get('Connection-String');
+  if (!connectionString) {
+    return res.status(400).json({
+      ok: false,
+      error: 'The connection string is missing from your request.'
+    });
+  }
+
+  const { db, collection } = req.params;
+  const { name } = req.body;
+
+  if (!name || !name.length) {
+    return res.status(400).json({
+      ok: false,
+      error: 'The provided name is invalid.'
+    });
+  }
+
+  try {
+    const mongo = new Mongo(connectionString);
+    await mongo.connect();
+    const data = await mongo.renameCollection(db, collection, name);
+    await mongo.disconnect();
+
+    return res.json({
+      ok: true,
+      collection: data
+    });
+  } catch (err) {
+    return res.status(500).json({
+      ok: false,
+      error: err.message
+    });
+  }
+}
