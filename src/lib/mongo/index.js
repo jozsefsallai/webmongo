@@ -73,6 +73,16 @@ class Mongo {
     return collection.rename(newCollectionName);
   }
 
+  async deleteCollection(databaseName, collectionName) {
+    this.checkClient();
+
+    const server = new Server(this.client);
+    const database = await server.database(databaseName);
+
+    const collection = await database.collection(collectionName);
+    return collection.drop();
+  }
+
   async documents(databaseName, collectionName, opts) {
     this.checkClient();
 

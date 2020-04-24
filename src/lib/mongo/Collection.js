@@ -56,6 +56,14 @@ class Collection {
     }
   }
 
+  async drop() {
+    try {
+      await this.collection.drop();
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
   insert(payload) {
     try {
       if (Array.isArray(payload)) {

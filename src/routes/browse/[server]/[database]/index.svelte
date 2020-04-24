@@ -23,21 +23,8 @@
   let collections = null;
   let createCollectionContainerVisible = false;
 
-  onMount(async function () {
-    const servers = storage.get('servers');
-    if (!servers) {
-      return goto('/');
-    }
-
-    targetServer = servers[server];
-    if (!targetServer) {
-      return goto('/');
-    }
-
-    breadcrumbs.set([
-      { label: targetServer.name, url: `/browse/${server}` },
-      { label: database }
-    ]);
+  async function fetchCollections() {
+    collections = null;
 
     try {
       const response = await fetch(`/api/databases/${database}`, {
@@ -61,6 +48,25 @@
       error = err.message;
       return;
     }
+  }
+
+  onMount(async function () {
+    const servers = storage.get('servers');
+    if (!servers) {
+      return goto('/');
+    }
+
+    targetServer = servers[server];
+    if (!targetServer) {
+      return goto('/');
+    }
+
+    breadcrumbs.set([
+      { label: targetServer.name, url: `/browse/${server}` },
+      { label: database }
+    ]);
+
+    await fetchCollections();
   });
 
   function toggleCreateCollectionContainer() {
@@ -102,6 +108,7 @@
         {database}
         {server}
         connectionString={targetServer.connectionString}
+        on:update={fetchCollections}
       />
     {:else}
       <ZeroDataState>
