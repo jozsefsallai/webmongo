@@ -39,36 +39,34 @@
       'Remember that this action is IRREVERSIBLE and results in DATA LOSS.'
     ].join(' ');
 
-    if (confirm(firstPrompt)) {
-      if (confirm(secondPrompt)) {
-        error = null;
+    if (confirm(firstPrompt) && confirm(secondPrompt)) {
+      error = null;
 
-        try {
-          const response = await fetch(`/api/databases/${database}/${collection.name}`, {
-            method: 'DELETE',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-              'Connection-String': connectionString
-            },
-            credentials: 'same-origin',
-            body: JSON.stringify({
-              confirmation: true
-            })
-          }).then(res => res.json());
+      try {
+        const response = await fetch(`/api/databases/${database}/${collection.name}`, {
+          method: 'DELETE',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Connection-String': connectionString
+          },
+          credentials: 'same-origin',
+          body: JSON.stringify({
+            confirmation: true
+          })
+        }).then(res => res.json());
 
-          if (response.ok) {
-            return dispatch('deleted');
-          } else {
-            error = response.error && response.error.length
-              ? response.error
-              : 'Something bad happened.';
-            return;
-          }
-        } catch (err) {
-          error = err.message;
+        if (response.ok) {
+          return dispatch('deleted');
+        } else {
+          error = response.error && response.error.length
+            ? response.error
+            : 'Something bad happened.';
           return;
         }
+      } catch (err) {
+        error = err.message;
+        return;
       }
     }
   }
@@ -105,3 +103,12 @@
     on:success={handleEditSuccess}
   />
 {/if}
+
+<style>
+  @media only screen and ( max-width: 720px ) {
+    .generic-list {
+      display: block;
+      text-align: center;
+    }
+  }
+</style>
