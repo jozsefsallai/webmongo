@@ -1,6 +1,10 @@
+<center>
+<img alt="WebMongo" src="https://github.com/jozsefsallai/webmongo/blob/master/static/assets/images/logo.svg" width="128">
+
 # WebMongo (beta)
 
 A fast and secure web UI for managing MongoDB servers. **See this app in action:** https://webmongo.now.sh
+</center>
 
 ## Motivation and Project Description
 
@@ -87,4 +91,5 @@ You can add `path/to/webmongo/__sapper__/build/index.js` as your startup script.
 
 ## License
 
-MIT.
+MIT. This project is in no way affiliated or endorsed by MongoDB, Inc. MongoDB and the leaf logo are a
+trademark of MongoDB, Inc.
