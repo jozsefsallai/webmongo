@@ -1,8 +1,14 @@
+const STORAGE_IS_ENCRYPTED = Symbol('STORAGE_IS_ENCRYPTED');
+
 function get(key) {
   const target = localStorage.getItem(key);
 
   if (!target) {
     return null;
+  }
+
+  if (typeof target === 'string' && target.startsWith('enc+')) {
+    return STORAGE_IS_ENCRYPTED;
   }
 
   try {
@@ -14,12 +20,18 @@ function get(key) {
   }
 }
 
-function set(key, data) {
+function set(key, data, skipParsing = false) {
+  if (skipParsing) {
+    localStorage.setItem(key, data);
+    return;
+  }
+
   const jsonString = JSON.stringify(data);
   localStorage.setItem(key, jsonString);
 }
 
 export {
   get,
-  set
+  set,
+  STORAGE_IS_ENCRYPTED
 };

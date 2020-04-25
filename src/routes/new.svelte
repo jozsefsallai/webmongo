@@ -1,9 +1,18 @@
 <script>
   import cuid from 'cuid';
   import { goto } from '@sapper/app';
+  import { onMount } from 'svelte';
   import * as storage from '@/lib/storage';
 
   let error = null;
+  let servers = {};
+
+  onMount(function () {
+    let servers = storage.get('servers');
+    if (servers === storage.STORAGE_IS_ENCRYPTED) {
+      return goto('/');
+    }
+  });
 
   async function handleFormSubmit(e) {
     e.preventDefault();
@@ -26,11 +35,6 @@
     }
 
     const id = cuid();
-
-    let servers = storage.get('servers');
-    if (!servers) {
-      servers = {};
-    }
 
     servers[id] = {
       name,

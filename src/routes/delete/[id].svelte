@@ -18,7 +18,7 @@
 
   onMount(function () {
     servers = storage.get('servers');
-    if (!servers) {
+    if (!servers || servers === storage.STORAGE_IS_ENCRYPTED) {
       return goto('/');
     }
 

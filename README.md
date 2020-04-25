@@ -82,7 +82,7 @@ You can add `path/to/webmongo/__sapper__/build/index.js` as your startup script.
 
 ## Planned Features and TODOs
 - [x] feat: Add, change, and remove collections
-- [ ] feat: Lock list of servers/connection strings with a password (similarly to how exporting works)
+- [x] feat: Lock list of servers/connection strings with a password (similarly to how exporting works)
 - [ ] todo: Write better user guide
 
 ## License

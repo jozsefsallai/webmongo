@@ -1,23 +1,20 @@
 <script>
-  import { get, STORAGE_IS_ENCRYPTED } from '@/lib/storage';
-  import { onMount } from 'svelte';
+  import { get, set, STORAGE_IS_ENCRYPTED } from '@/lib/storage';
   import { goto } from '@sapper/app';
-  import FileSaver from 'file-saver';
+  import { onMount } from 'svelte';
+  import { encryptToStorage } from '@/lib/lock';
 
-  import AES from 'crypto-js/aes';
-
-  let servers = null;
   let error = null;
+  let servers = null;
 
   onMount(function () {
     servers = get('servers');
-
     if (!servers || servers === STORAGE_IS_ENCRYPTED) {
-      goto('/');
+      return goto('/');
     }
   });
 
-  function handleExport(e) {
+  function handleLock(e) {
     e.preventDefault();
 
     error = null;
@@ -36,17 +33,18 @@
       return;
     }
 
-    const encrypted = AES.encrypt(serversJSON, passphrase);
-    const blob = new Blob([ encrypted ], { type: 'text/plain;charset=utf-8' });
-    FileSaver.saveAs(blob, 'webmongo.txt', { autoBom: true });
+    const encrypted = encryptToStorage(serversJSON, passphrase);
+    set('servers', encrypted, true);
+
+    goto('/');
   }
 </script>
 
 <svelte:head>
-  <title>Export Servers</title>
+  <title>Lock Data</title>
 </svelte:head>
 
-<h1>Export Servers</h1>
+<h1>Lock Data</h1>
 
 <section class="content">
   {#if error && error.length}
@@ -55,7 +53,7 @@
     </div>
   {/if}
 
-  <form on:submit={handleExport}>
+  <form on:submit={handleLock}>
     <div class="input-group">
       <label for="passphrase">Passphrase (min. 8 characters)</label>
       <input type="password" id="passphrase" name="passphrase">
@@ -65,7 +63,7 @@
       <input type="password" id="passphrase2" name="passphrase2">
     </div>
     <div class="input-group submit-button">
-      <button type="submit">Export</button>
+      <button type="submit">Lock</button>
     </div>
   </form>
 </section>
