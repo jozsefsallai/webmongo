@@ -1,12 +1,21 @@
 <p align="center">
-
-<img alt="WebMongo" src="https://github.com/jozsefsallai/webmongo/blob/master/static/assets/images/logo.svg" width="128">
-
-# WebMongo (beta)
-
-A fast and secure web UI for managing MongoDB servers. **See this app in action:** https://webmongo.now.sh
-
+  <img alt="WebMongo" src="https://github.com/jozsefsallai/webmongo/blob/master/static/assets/images/logo.svg" width="128" />
 </p>
+
+<h1 align="center">WebMongo (beta)</h1>
+
+<p align="center">
+  A fast and secure web UI for managing MongoDB servers.
+  <strong>See this app in action:</strong> https://webmongo.now.sh
+</p>
+
+<p align="center">
+  <a href="https://github.com/jozsefsallai/webmongo/actions"><img src="https://img.shields.io/github/workflow/status/jozsefsallai/webmongo/Continuous%20Integration?style=flat-square" alt="CI status" /></a>
+  <a href="https://david-dm.org/jozsefsallai/webmongo"><img src="https://img.shields.io/david/jozsefsallai/webmongo?style=flat-square" alt="Dependency Status" /></a>
+  <a href="https://github.com/jozsefsallai/webmongo/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/jozsefsallai/webmongo?style=flat-square" alt="MIT license" /></a>
+</p>
+
+---
 
 ## Motivation and Project Description
 
