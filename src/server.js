@@ -24,15 +24,15 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: [
-        `'self'`,
+        '\'self\'',
         'fonts.googleapis.com',
         'fonts.gstatic.com',
-        'localhost:10000'  // dev server (hot reloading, etc. )
+        'localhost:10000' // dev server (hot reloading, etc. )
       ],
       scriptSrc: [
-        `'self'`,
+        '\'self\'',
         (req, res) => `'nonce-${res.locals.nonce}'`,
-        `blob:`  // workaround for sapper + rollup/shimport generating blob: imports
+        'blob:' // workaround for sapper + rollup/shimport generating blob: imports
       ]
     }
   }

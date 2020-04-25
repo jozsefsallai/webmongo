@@ -1,10 +1,12 @@
-<center>
+<p align="center">
+
 <img alt="WebMongo" src="https://github.com/jozsefsallai/webmongo/blob/master/static/assets/images/logo.svg" width="128">
 
 # WebMongo (beta)
 
 A fast and secure web UI for managing MongoDB servers. **See this app in action:** https://webmongo.now.sh
-</center>
+
+</p>
 
 ## Motivation and Project Description
 

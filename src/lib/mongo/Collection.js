@@ -102,7 +102,7 @@ class Collection {
       delete payload._id; // do not update ID
 
       await this.collection.replaceOne({
-        _id: new ObjectId(id),
+        _id: new ObjectId(id)
       }, payload);
 
       return payload;
