@@ -10,7 +10,7 @@
     e.preventDefault();
     error = null;
 
-    const name = e.target.name.value;
+    const name = e.target.name.value && e.target.name.value.trim();
 
     if (!name || !name.length) {
       error = 'Please provide a valid collection name.';
