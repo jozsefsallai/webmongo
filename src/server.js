@@ -30,8 +30,7 @@ app.use(helmet({
       ],
       styleSrc: [
         '\'self\'',
-        'fonts.googleapis.com',
-        '\'unsafe-inline\'' // temporary, until I find a workaround for codeflask's style injection
+        'fonts.googleapis.com'
       ],
       fontSrc: [
         'fonts.gstatic.com'
