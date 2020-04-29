@@ -20,9 +20,9 @@
 ## Motivation and Project Description
 
 Currently, there are no easy ways of managing MongoDB servers from multiple devices. You have to download
-a client made specifically for the platform you're using. This is not convenient, because it doesn't only
-require having to find a good client, but also waiting for it to install and having to re-add your servers
-on every device.
+a client made specifically for the platform you're using. This isn't convenient, as it doesn't only require
+having to find a good client, but also waiting for it to install and having to re-add your servers on every
+device.
 
 It would be great if managing MongoDB servers was doable through a web interface, using nothing but your
 web browser alone. But then comes the question: is it really a good idea to store all your connection
@@ -46,10 +46,15 @@ servers/connection strings, WebMongo uses your browser's `localStorage`.
 
 ## Deploying to your own server
 
-Thanks to the fact that WebMongo is open-source, deploying your very own instance to your own server should
-take no more than a few minutes. The production app (https://webmongo.now.sh) doesn't keep any logs of your
-connection strings, requests, and their results, but if you're not comfortable using the official app you,
-can deploy it to your own.
+Thanks to WebMongo's open-source nature, deploying your very own instance yourself should take no more than
+a few minutes. The production app (https://webmongo.now.sh) doesn't keep any logs of your connection strings,
+requests, and their results, but if you're not comfortable using the official app, you can deploy it yourself.
+
+> **WARNING!** If you deploy WebMongo to a server with MongoDB installed, you can access that server using
+> the `mongodb://127.0.0.1` connection string. Please keep in mind that doing this will make your MongoDB
+> server vulnerable to attacks, even if you have all outbound connections disabled. To mitigate this, you
+> should either password-protect your WebMongo instance (still not 100% secure, but better than nothing)
+> or deploy it to [Vercel](https://vercel.com) or a different server and give network access to that server.
 
 This guide assumes you have Node.js installed on your machine.
 
