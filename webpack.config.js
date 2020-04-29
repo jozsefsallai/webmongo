@@ -7,6 +7,7 @@ const pkg = require('./package.json');
 
 const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
+const hot = dev && process.env.HOT !== 0;
 
 const alias = {
   svelte: path.resolve('node_modules', 'svelte'),
@@ -25,12 +26,15 @@ module.exports = {
         {
           test: /\.(svelte|html)$/,
           use: {
-            loader: 'svelte-loader',
+            loader: 'svelte-loader-hot',
             options: {
               dev,
               emitCss: true,
               hydratable: true,
-              hotReload: false // pending https://github.com/sveltejs/svelte/issues/2377
+              hotReload: true,
+              hotOptions: {
+                optimistic: true
+              }
             }
           }
         },
@@ -51,9 +55,15 @@ module.exports = {
         'process.browser': true,
         'process.env.NODE_ENV': JSON.stringify(mode)
       }),
-      new MiniCSSExtractPlugin('[name].css')
+      new MiniCSSExtractPlugin('[name].css'),
+      hot && new webpack.HotModuleReplacementPlugin()
     ].filter(Boolean),
-    devtool: dev && 'inline-source-map'
+    devtool: dev && 'inline-source-map',
+    devServer: {
+      historyApiFallback: {
+        disableDotRule: true
+      }
+    }
   },
 
   server: {
@@ -67,7 +77,7 @@ module.exports = {
         {
           test: /\.(svelte|html)$/,
           use: {
-            loader: 'svelte-loader',
+            loader: 'svelte-loader-hot',
             options: {
               css: false,
               generate: 'ssr',

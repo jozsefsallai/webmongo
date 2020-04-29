@@ -25,21 +25,20 @@ app.use(helmet({
     directives: {
       defaultSrc: [
         '\'self\'',
-        'localhost:10000' // dev server (hot reloading, etc. )
+        'fonts.googleapis.com',
+        'localhost:10000' // dev server (hot reloading, etc.)
       ],
       styleSrc: [
         '\'self\'',
         'fonts.googleapis.com',
-        '\'unsafe-inline\''
-        // temporary, until I find a workaround for codeflask's style injection
+        '\'unsafe-inline\'' // temporary, until I find a workaround for codeflask's style injection
       ],
       fontSrc: [
         'fonts.gstatic.com'
       ],
       scriptSrc: [
         '\'self\'',
-        (req, res) => `'nonce-${res.locals.nonce}'`,
-        'blob:' // workaround for sapper + rollup/shimport generating blob: imports
+        (req, res) => `'nonce-${res.locals.nonce}'`
       ]
     }
   }
