@@ -77,6 +77,10 @@
 {#if target && databases}
   <h1>{target.name}</h1>
 
+  {#if target.name.trim().toLowerCase() === 'nanachi'}
+    <p><em>Naaaaaa~</em></p>
+  {/if}
+
   <section class="content">
     {#if databases && databases.length}
       <DatabaseList {databases} {server} />
