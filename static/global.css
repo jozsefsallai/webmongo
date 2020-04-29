@@ -221,8 +221,10 @@ button.loading::before {
 
 .codeflask__lines {
   background: #292929;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+}
+
+.codeflask.codeflask--has-line-numbers:before {
+  background: transparent !important;
 }
 
 @media only screen and ( max-width: 1120px ) {
