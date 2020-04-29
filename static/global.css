@@ -185,6 +185,46 @@ button.loading::before {
   }
 }
 
+.json-editor {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  box-sizing: border-box;
+}
+
+.codeflask {
+  background: #212121;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.codeflask__textarea {
+  color: transparent !important;
+  caret-color: #fff !important;
+}
+
+.codeflask .token.punctuation {
+  color: #fff;
+}
+
+.codeflask .token.string {
+  color: var(--mongo-green);
+}
+
+.codeflask .token.boolean, .codeflask .token.number {
+  color: #2ed7fd;
+}
+
+.codeflask .token.keyword {
+  color: #af78e2;
+}
+
+.codeflask__lines {
+  background: #292929;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
 @media only screen and ( max-width: 1120px ) {
   .mid {
     width: 720px;

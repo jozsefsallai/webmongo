@@ -25,9 +25,16 @@ app.use(helmet({
     directives: {
       defaultSrc: [
         '\'self\'',
-        'fonts.googleapis.com',
-        'fonts.gstatic.com',
         'localhost:10000' // dev server (hot reloading, etc. )
+      ],
+      styleSrc: [
+        '\'self\'',
+        'fonts.googleapis.com',
+        '\'unsafe-inline\''
+        // temporary, until I find a workaround for codeflask's style injection
+      ],
+      fontSrc: [
+        'fonts.gstatic.com'
       ],
       scriptSrc: [
         '\'self\'',

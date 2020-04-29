@@ -16,7 +16,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.13.0",
     "@rollup/plugin-alias": "^3.1.0",
     "body-parser": "^1.19.0",
-    "codemirror": "^5.52.2",
+    "codeflask": "^1.4.1",
     "compression": "^1.7.1",
     "crypto-js": "3.1.9-1",
     "cuid": "^2.1.8",

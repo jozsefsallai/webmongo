@@ -24,9 +24,4 @@
     margin: 0;
     margin-bottom: 1.5em;
   }
-
-  :global(code) {
-    white-space: pre-wrap;
-    background: #333 !important;
-  }
 </style>

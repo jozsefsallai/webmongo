@@ -1,6 +1,6 @@
 <script>
   import { onMount, createEventDispatcher } from 'svelte';
-  import { CodeMirror, defaultConfig } from '@/lib/codemirror';
+  import codeflask from '@/lib/codeflask';
 
   import SubmitWithLoading from '@/components/SubmitWithLoading.svelte';
 
@@ -18,7 +18,7 @@
   let editor;
 
   onMount(function () {
-    editor = CodeMirror.fromTextArea(editorElement, defaultConfig);
+    editor = codeflask(editorElement);
   });
 
   async function handleFormSubmit(e) {
@@ -26,7 +26,7 @@
 
     error = null;
 
-    let payload = editor.getValue();
+    let payload = editor.getCode();
 
     try {
       payload = JSON.parse(payload);
@@ -76,10 +76,10 @@
 
   <div class="input-group">
     <label for="payload">Contents:</label>
-    <textarea
+    <div
       class="json-editor"
       bind:this={editorElement}
-    >{JSON.stringify(original, null, 2)}</textarea>
+    >{JSON.stringify(original, null, 2)}</div>
   </div>
   <div class="input-group submit-button">
     <SubmitWithLoading callback={handleFormSubmit}>Save</SubmitWithLoading>
