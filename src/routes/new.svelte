@@ -8,7 +8,7 @@
   let servers = {};
 
   onMount(function () {
-    let servers = storage.get('servers');
+    servers = storage.get('servers');
     if (servers === storage.STORAGE_IS_ENCRYPTED) {
       return goto('/');
     }
