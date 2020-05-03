@@ -11,10 +11,14 @@
 {#if breadcrumbsList && breadcrumbsList.length}
   {#each breadcrumbsList as breadcrumb, idx}
     <span class="breadcrumb">
-      {#if idx < breadcrumbsList.length - 1}
-        <a href={breadcrumb.url}>{breadcrumb.label}</a> <span>/</span>
+      {#if breadcrumb.url === '/about'}
+        <a href={breadcrumb.url}>{breadcrumb.label}</a>
       {:else}
-        <strong>{breadcrumb.label}</strong>
+        {#if idx < breadcrumbsList.length - 1 || breadcrumb.url === '/about'}
+          <a href={breadcrumb.url}>{breadcrumb.label}</a> <span>/</span>
+        {:else}
+          <strong>{breadcrumb.label}</strong>
+        {/if}
       {/if}
     </span>
   {/each}

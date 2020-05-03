@@ -15,7 +15,9 @@
 	let serversList = [];
 
 	onMount(() => {
-		breadcrumbs.set([]);
+		breadcrumbs.set([
+			{ url: '/about', label: 'About' }
+		]);
 
 		servers = storage.get('servers');
 		if (servers === storage.STORAGE_IS_ENCRYPTED) {

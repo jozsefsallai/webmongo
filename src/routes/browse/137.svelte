@@ -47,19 +47,14 @@
 </section>
 
 <style>
-  .hello {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #137;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  :global(header), :global(footer) {
+    display: none;
   }
-  
+
+  :global(body) {
+    background: #137;
+  }
+
   .hello .content {
     overflow: auto;
     max-height: 100vh;
