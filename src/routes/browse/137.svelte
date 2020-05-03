@@ -56,9 +56,6 @@
   }
 
   .hello .content {
-    overflow: auto;
-    max-height: 100vh;
-    max-width: 85%;
     padding: 1em;
   }
 </style>
