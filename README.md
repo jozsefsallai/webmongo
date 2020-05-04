@@ -15,6 +15,9 @@
   <a href="https://github.com/jozsefsallai/webmongo/blob/master/LICENSE.md"><img src="https://img.shields.io/github/license/jozsefsallai/webmongo?style=flat-square" alt="MIT license" /></a>
 </p>
 
+<p align="center">
+  <a href="https://vercel.com/new/project?template=jozsefsallai/webmongo"><img width="128" src="https://vercel.com/button" alt="One-click Deployment" /></a>
+
 ---
 
 ## Motivation and Project Description
