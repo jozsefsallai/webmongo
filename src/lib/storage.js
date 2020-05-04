@@ -4,7 +4,7 @@ function get(key) {
   const target = localStorage.getItem(key);
 
   if (!target) {
-    return null;
+    return {};
   }
 
   if (typeof target === 'string' && target.startsWith('enc+')) {
