@@ -101,6 +101,11 @@
 		{:else}
 			{#if serversList && serversList.length}
 				<ServerList {servers} serverIDs={serversList} />
+				<div class="bookmark-notice">
+					<a href="/b/create">
+						<small>🔖 Create a customized bookmark</small>
+					</a>
+				</div>
 			{:else}
 				<ZeroDataState>
 					You have no servers yet.
@@ -127,5 +132,10 @@
 	.general-actions {
 		text-align: center;
 		padding: 3em 1em;
+	}
+
+	.bookmark-notice {
+    text-align: center;
+    margin-top: 3em;
 	}
 </style>
