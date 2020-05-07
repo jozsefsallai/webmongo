@@ -19,7 +19,9 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Installing dependencies
       run: npm ci
-    - name: Linting
+    - name: Lint app
       run: npm run lint
+    - name: Lint docs
+      run: npm run docs:lint
       env:
         CI: true
