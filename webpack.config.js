@@ -5,7 +5,7 @@ const path = require('path');
 const config = require('sapper/config/webpack.js');
 const pkg = require('./package.json');
 
-const mode = process.env.NODE_ENV;
+const mode = process.env.NODE_ENV || 'development';
 const dev = mode === 'development';
 const hot = dev && process.env.HOT !== 0;
 
@@ -94,7 +94,7 @@ module.exports = {
         }
       ]
     },
-    mode: process.env.NODE_ENV,
+    mode,
     performance: {
       hints: false // it doesn't matter if server.js is large
     }
@@ -103,6 +103,6 @@ module.exports = {
   serviceworker: {
     entry: config.serviceworker.entry(),
     output: config.serviceworker.output(),
-    mode: process.env.NODE_ENV
+    mode
   }
 };
