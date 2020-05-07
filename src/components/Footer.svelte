@@ -4,11 +4,14 @@
 </script>
 
 <footer>
-  Made with ❤ by
-  <a href="https://github.com/jozsefsallai" target="_blank" rel="noreferrer noopener">@jozsefsallai</a>.<br />
-  <a href="https://github.com/jozsefsallai/webmongo" target="_blank" rel="noreferrer noopener">
-    <Icon icon={faGithub} /> GitHub
-  </a>
+  <p>
+    Made with ❤ by
+    <a href="https://github.com/jozsefsallai" target="_blank" rel="noreferrer noopener">@jozsefsallai</a>.<br />
+    <a href="https://github.com/jozsefsallai/webmongo" target="_blank" rel="noreferrer noopener">
+      <Icon icon={faGithub} /> GitHub
+    </a>
+  </p>
+  <p><a href="/docs">Read the Documentation</a></p>
 </footer>
 
 <style>
