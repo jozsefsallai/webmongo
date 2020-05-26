@@ -92,6 +92,5 @@
     margin: 0;
     padding: 2em;
     background: #121212;
-    margin-bottom: 1.5em;
   }
 </style>

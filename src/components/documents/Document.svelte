@@ -65,7 +65,7 @@
   </div>
 {/if}
 
-<div class="document">
+<div class="document" class:opened={editMode}>
   <div class="generic-list">
     <div class="name">{doc._id}</div>
     <div class="actions">
@@ -91,14 +91,29 @@
 </div>
 
 <style>
+  .document {
+    transition: 150ms transform ease;
+    margin-bottom: 1.5em;
+    border-bottom: 3px solid #333;
+  }
+
   .document .generic-list {
     border-top: 3px solid #333;
+    border-bottom: 0;
+  }
+
+  .document.opened {
+    transform: scale(1.04);
   }
 
   @media only screen and ( max-width: 720px ) {
     .document .generic-list {
       display: block;
       text-align: center;
+    }
+
+    .document.opened {
+      transform: none;
     }
   }
 </style>

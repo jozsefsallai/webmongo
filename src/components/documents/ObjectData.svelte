@@ -22,6 +22,5 @@
 <style>
   pre {
     margin: 0;
-    margin-bottom: 1.5em;
   }
 </style>

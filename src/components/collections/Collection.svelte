@@ -78,33 +78,51 @@
   </div>
 {/if}
 
-<div class="generic-list">
-  <div class="name">
-    <a href={`/browse/${server}/${database}/${collection.name}`}>
-      { collection.name }
-    </a>
-    <small class="additional-info">
-      <strong>Size:</strong> {size},
-      <strong>Documents:</strong> {collection.count}
-    </small>
+<section class="collection-entry" class:opened={editMode}>
+  <div class="generic-list">
+    <div class="name">
+      <a href={`/browse/${server}/${database}/${collection.name}`}>
+        { collection.name }
+      </a>
+      <small class="additional-info">
+        <strong>Size:</strong> {size},
+        <strong>Documents:</strong> {collection.count}
+      </small>
+    </div>
+    <div class="actions">
+      <button on:click={toggleEditMode}>Edit</button>
+      <button class="red-button" on:click={handleDeleteClick}>Drop</button>
+    </div>
   </div>
-  <div class="actions">
-    <button on:click={toggleEditMode}>Edit</button>
-    <button class="red-button" on:click={handleDeleteClick}>Drop</button>
-  </div>
-</div>
 
-{#if editMode}
-  <EditCollection
-    {connectionString}
-    {database}
-    collection={collection.name}
-    on:cancelled={toggleEditMode}
-    on:success={handleEditSuccess}
-  />
-{/if}
+  {#if editMode}
+    <EditCollection
+      {connectionString}
+      {database}
+      collection={collection.name}
+      on:cancelled={toggleEditMode}
+      on:success={handleEditSuccess}
+    />
+  {/if}
+</section>
 
 <style>
+  .collection-entry {
+    transition: 150ms transform ease;
+  }
+
+  .collection-entry.opened {
+    transform: scale(1.04);
+  }
+
+  .collection-entry .generic-list {
+    border-bottom: 0;
+  }
+
+  .collection-entry:last-child .generic-list {
+    border-bottom: 3px solid #333;
+  }
+
   @media only screen and ( max-width: 720px ) {
     .generic-list {
       display: block;
