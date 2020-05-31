@@ -91,6 +91,6 @@
   form {
     margin: 0;
     padding: 2em;
-    background: #121212;
+    background: var(--pagination-background);
   }
 </style>

@@ -94,11 +94,11 @@
   .document {
     transition: 150ms transform ease;
     margin-bottom: 1.5em;
-    border-bottom: 3px solid #333;
+    border-bottom: 3px solid var(--generic-container-border-color);
   }
 
   .document .generic-list {
-    border-top: 3px solid #333;
+    border-top: 3px solid var(--generic-container-border-color);
     border-bottom: 0;
   }
 

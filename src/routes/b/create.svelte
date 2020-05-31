@@ -95,7 +95,7 @@
     padding: .2em 1em;
     padding-bottom: 2em;
     text-align: center;
-    background: #111;
+    background: var(--input);
     border-radius: 3px;
   }
 

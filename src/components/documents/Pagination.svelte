@@ -48,7 +48,7 @@
   .pagination {
     padding: 1em;
     margin: 1em 0;
-    background: #121212;
+    background: var(--pagination-background);
     display: flex;
     align-items: center;
     justify-content: space-between;

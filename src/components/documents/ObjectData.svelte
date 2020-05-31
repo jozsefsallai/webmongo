@@ -1,7 +1,16 @@
 <script>
   import hljs from 'highlight.js/lib/highlight';
   import json from 'highlight.js/lib/languages/json';
-  import 'highlight.js/styles/monokai.css';
+
+  import { themeSetting } from '@/state/store';
+
+  let theme;
+
+  const unsubscribe = themeSetting.subscribe(value => {
+    theme = value;
+  });
+
+  $: import(`highlight.js/styles/atom-one-${theme}.css`);
 
   export let content;
 

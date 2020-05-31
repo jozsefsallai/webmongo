@@ -72,7 +72,7 @@
   form {
     margin: 0;
     padding: 2em;
-    background: #333;
+    background: var(--background-faint);
     margin-bottom: 1.5em;
   }
 </style>

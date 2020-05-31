@@ -47,7 +47,7 @@
 <style>
   .create-collection-container {
     padding: 2em;
-    background: #333;
+    background: var(--background-faint);
     margin-top: 2em;
     margin-bottom: 2em;
   }

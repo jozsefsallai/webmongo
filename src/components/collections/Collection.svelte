@@ -120,7 +120,7 @@
   }
 
   .collection-entry:last-child .generic-list {
-    border-bottom: 3px solid #333;
+    border-bottom: 3px solid var(--generic-container-border-color);
   }
 
   @media only screen and ( max-width: 720px ) {

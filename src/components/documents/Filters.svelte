@@ -69,7 +69,7 @@
   section.filters {
     padding: 2em;
     margin: 1em 0;
-    background: #323232;
+    background: var(--filters-background);
   }
 
   section.filters .input-group {

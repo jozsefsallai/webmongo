@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
-body {
-  margin: 0;
-  padding: 0;
-  font: 16px / 1.6 'Montserrat', sans-serif;
-  background: #232323;
-  color: #fff;
-}
-
 :root {
   --mongo-green: #13aa52;
   --mongo-green-rgb: 19, 170, 82;
@@ -16,6 +8,58 @@ body {
 
   --md-break: 1120px;
   --mobile-break: 720px;
+}
+
+.dark {
+  --input: #111;
+  --background: #232323;
+  --foreground: #fff;
+
+  --generic-container-background-primary: #121212;
+  --generic-container-background-secondary: #1a1a1a;
+  --generic-container-border-color: #333;
+
+  --background-faint: #333;
+  --pagination-background: #121212;
+  --filters-background: #323232;
+
+  --codeflask-background: #212121;
+  --codeflask-foreground: #fff;
+  --codeflask-caret-color: #fff;
+  --codeflask-token-number-color: #2ed7fd;
+  --codeflask-token-keyword-color: #af78e2;
+  --codeflask-lines-background: #292929;
+  --codeflask-lines-foreground: #999;
+}
+
+.light {
+  --input: #dedede;
+  --background: #f4f4f4;
+  --foreground: #121212;
+
+  --generic-container-background-primary: #e6e6e6;
+  --generic-container-background-secondary: #d8d8d8;
+  --generic-container-border-color: #aaa;
+
+  --background-faint: #c8c8c8;
+  --pagination-background: #fff;
+  --filters-background: #e9e9e9;
+
+  --codeflask-background: #f3f3f3;
+  --codeflask-foreground: #212121;
+  --codeflask-caret-color: #000;
+  --codeflask-token-number-color: #13a0c0;
+  --codeflask-token-keyword-color: #8b57bd;
+  --codeflask-lines-background: #c5c5c5;
+  --codeflask-lines-foreground: #777;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font: 16px / 1.6 'Montserrat', sans-serif;
+  background: var(--background);
+  color: var(--foreground);
 }
 
 .mid {
@@ -31,10 +75,11 @@ body {
   margin: 1.5em 0;
 }
 
-a {
+a, .fake-link {
   color: var(--mongo-green);
   text-decoration: none;
   border-bottom: 1px solid var(--mongo-green);
+  cursor: pointer;
 }
 
 h1, h2, h3, h4 {
@@ -75,9 +120,9 @@ input, button, .button {
 input {
   display: block;
   width: 100%;
-  border: 1px solid #111;
-  background: #111;
-  color: #fff;
+  border: 1px solid var(--input);
+  background: var(--input);
+  color: var(--foreground);
   transition: border 100ms linear;
 }
 
@@ -127,16 +172,16 @@ button:hover, .button:hover, .title-with-button a:hover {
   align-items: center;
   justify-content: space-between;
   padding: .8em 1em;
-  background: #121212;
-  border-bottom: 3px solid #333;
+  background: var(--generic-container-background-primary);
+  border-bottom: 3px solid var(--generic-container-border-color);
 }
 
 .generic-list:first-child {
-  border-top: 3px solid #333;
+  border-top: 3px solid var(--generic-container-border-color);
 }
 
 .generic-list:nth-child(2n) {
-  background: #1a1a1a;
+  background: var(--generic-container-background-secondary);
 }
 
 .generic-list .additional-info {
@@ -193,18 +238,18 @@ button.loading::before {
 }
 
 .codeflask {
-  background: #212121;
-  color: #fff;
+  background: var(--codeflask-background);
+  color: var(--codeflask-foreground);
   border-radius: 4px;
 }
 
 .codeflask__textarea {
   color: transparent !important;
-  caret-color: #fff !important;
+  caret-color: var(--codeflask-caret-color) !important;
 }
 
 .codeflask .token.punctuation {
-  color: #fff;
+  color: var(--codeflask-lines-foreground);
 }
 
 .codeflask .token.string {
@@ -212,15 +257,16 @@ button.loading::before {
 }
 
 .codeflask .token.boolean, .codeflask .token.number {
-  color: #2ed7fd;
+  color: var(--codeflask-token-number-color);
 }
 
 .codeflask .token.keyword {
-  color: #af78e2;
+  color: var(--codeflask-token-keyword-color);
 }
 
 .codeflask__lines {
-  background: #292929;
+  background: var(--codeflask-lines-background);
+  color: var(--codeflask-lines-foreground) !important;
 }
 
 .codeflask.codeflask--has-line-numbers:before {
