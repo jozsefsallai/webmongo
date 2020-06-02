@@ -1,7 +1,5 @@
 # WebMongo Documentation
 
-**This documentation site is currently a work in progress.**
-
 Welcome to the official documentation of [WebMongo][webmongo] - your new
 favorite web UI for MongoDB. Using WebMongo you can view and manage an infinite
 number of MongoDB web servers from any device, without risking the security of

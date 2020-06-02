@@ -27,4 +27,6 @@ happens locally on your device.
 Once you've added a server, you can go back to the home page and select your
 newly added server to list all of its databases.
 
+![Add Server page](./images/add-server.png)
+
 [add-new-server]: https://webmongo.now.sh/new "Open in the production app"

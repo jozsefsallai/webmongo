@@ -28,7 +28,7 @@
       <Icon icon={faGithub} /> GitHub
     </a>
   </p>
-  <p><a href="/docs">Read the Documentation</a> &middot; <span class="fake-link" on:click={switchTheme}>{themeSwitcherLabel}</span></p>
+  <p><a href="/docs" target="_blank">Read the Documentation</a> &middot; <span class="fake-link" on:click={switchTheme}>{themeSwitcherLabel}</span></p>
 </footer>
 
 <style>

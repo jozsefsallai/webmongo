@@ -10,6 +10,13 @@ module.exports = {
     sidebar: [
       '/',
       '/adding-servers',
+      '/managing-servers-and-databases',
+      '/managing-documents',
+      '/applying-filters',
+      '/export-import',
+      '/lock-your-session',
+      '/customized-bookmarks',
+      '/tips',
       '/deployment'
     ],
     repo: 'jozsefsallai/webmongo',
