@@ -1,5 +1,5 @@
 <script>
-  import hljs from 'highlight.js/lib/highlight';
+  import hljs from 'highlight.js/lib/core';
   import json from 'highlight.js/lib/languages/json';
 
   import { themeSetting } from '@/state/store';
